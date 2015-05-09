@@ -22,6 +22,9 @@ public class CharacterScript : MonoBehaviour {
 		return ownRigidbody.velocity;
 	}
 
+	public float cometReleaseCooldown = 0.5f;
+	private bool canReleaseFromComet;
+
 	// events for going into space and landing 
 	public delegate void _OnWentIntoSpace(CharacterScript c);
 	public event _OnWentIntoSpace OnWentIntoSpace;
@@ -40,7 +43,7 @@ public class CharacterScript : MonoBehaviour {
 		if (cometJoint == null) {
 			timeInSpace += Time.deltaTime;
 		} else {
-			if (Input.anyKeyDown) {
+			if (Input.anyKeyDown && canReleaseFromComet == true) {
 				cometJoint.connectedBody.detectCollisions = false;
 				Destroy (cometJoint);
 				this.ownRigidbody.drag = 0;
@@ -71,6 +74,25 @@ public class CharacterScript : MonoBehaviour {
 		cometJoint.minDistance = 0.5f;
 		cometJoint.maxDistance = 0.6f;
 
+		this.canReleaseFromComet = false;
+		Hashtable h = new Hashtable ();
+		h.Add ("from", cometReleaseCooldown);
+		h.Add ("to", cometReleaseCooldown);
+		h.Add ("time", cometReleaseCooldown);
+		h.Add ("onupdate", "OnTweenUpdateCometReleaseCooldown");
+		h.Add ("oncomplete", "OnTweenCompleteCometReleaseCooldown");
+		iTween.ValueTo (gameObject, h);
+
 		if (OnLandedOntoComet != null) OnLandedOntoComet(this);
+
 	}
+
+	void OnTweenUpdateCometReleaseCooldown(float f) {
+
+	}
+
+	void OnTweenCompleteCometReleaseCooldown() {
+		canReleaseFromComet = true;
+	}
+
 }

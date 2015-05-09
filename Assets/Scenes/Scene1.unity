@@ -825,6 +825,7 @@ MonoBehaviour:
   springForce: 1200
   damper: 60
   dragOnComets: .5
+  cometReleaseCooldown: .75
 --- !u!54 &966904983
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1219,6 +1220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 966904982}
+  levelRadius: 25
 --- !u!114 &1857697727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1231,6 +1233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cometPrefab: {fileID: 426240, guid: 582f9da01bf634fe7853aaf22e7e50b3, type: 2}
+  cometOriginAngleRangeSize: 120
 --- !u!1 &1918144122
 GameObject:
   m_ObjectHideFlags: 0

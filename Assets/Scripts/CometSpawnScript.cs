@@ -5,7 +5,10 @@ public class CometSpawnScript : MonoBehaviour {
 
 	public Transform cometPrefab;
 
+	public float cometOriginAngleRangeSize = 120f;
+
 	void Start () {
+		cometOriginAngleRangeSize *= Mathf.Deg2Rad;
 		GameScript.game.character.OnWentIntoSpace += OnWentIntoSpace;
 		//OnWentIntoSpace (GameScript.game.character); //this is fired manually because there is no way this object can receive events from CharacterScript during start.
 	}
@@ -15,7 +18,7 @@ public class CometSpawnScript : MonoBehaviour {
 			return;
 		}
 		
-		float timeUntilNextComet = Random.value * 3 + 2;
+		float timeUntilNextComet = Random.value * 1.5f + 3.5f;
 
 		// First, find the end point for the comet. This is the character's position plus speed over time.
 		Vector3 targetPosition = c.transform.position;
@@ -28,10 +31,23 @@ public class CometSpawnScript : MonoBehaviour {
 		// Offset for the comet's size. (is this necessary? maybe not for iteration 1)
 		//Vector3 cometSize = cometPrefab.GetComponent<Renderer>().bounds.size;
 
+		/* Decide what the comet's direction will be. We want to exclude a few directions: comets should come from
+		 * different sides, and also they should be more likely to come from the edge of the level if you are
+		 * far away from the center of the level. */
+		float direction = Random.value;
+
+		// Adjust direction for level size.
+		float levelRadius = GameScript.game.levelRadius;
+		float angle = Mathf.Atan2 (targetPosition.z, targetPosition.x);
+		float distance = targetPosition.magnitude;
+		if (distance >= levelRadius) {
+			float directionLeftBound = angle + Mathf.PI - 0.5f * cometOriginAngleRangeSize;
+			direction = Random.value * cometOriginAngleRangeSize + directionLeftBound;
+		}
+
 		// Decide what the comet's velocity and rotation speed will be.
-		Vector2 direction = Random.insideUnitCircle.normalized;
-		float speed = Random.value * 5 + 2;
-		Vector3 cometVelocity = new Vector3 (direction.x * speed, 0, direction.y * speed);
+		float speed = Random.value * 6 + 4;
+		Vector3 cometVelocity = new Vector3 (Mathf.Cos(direction) * speed, 0, Mathf.Sin(direction) * speed);
 
 		// Use this to offset the comet so that it will hit that set target after the time.
 		targetPosition.x -= cometVelocity.x * timeUntilNextComet;
@@ -41,7 +57,7 @@ public class CometSpawnScript : MonoBehaviour {
 		// Now instantiate the final comet with the final values.
 		Transform t = Instantiate (cometPrefab, targetPosition, Quaternion.identity) as Transform;
 
-		float cometRotationSpeed = Random.value * 50 + 100;
+		float cometRotationSpeed = Random.value * 40 + 120;
 		if (Random.value <= 0.5) cometRotationSpeed *= -1;
 
 		CometScript comet = t.GetComponent<CometScript> ();
