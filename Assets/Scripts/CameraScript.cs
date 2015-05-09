@@ -3,17 +3,18 @@ using System.Collections;
 
 public class CameraScript : MonoBehaviour {
 
-	public CharacterScript followedCharacter;
+	[HideInInspector] public GameScript game;
+	//public CharacterScript followedCharacter;
 
 	void Start () {
 
 	}
 
 	void LateUpdate() {
-		if (followedCharacter == null)
+		if (game.character == null)
 			return;
 
-		transform.position = followedCharacter.transform.position;
+		transform.position = game.character.transform.position;
 		transform.Translate(new Vector3(0, 0, -10), Space.Self);
 	}
 }

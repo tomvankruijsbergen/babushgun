@@ -3,13 +3,10 @@ using System.Collections;
 
 public class GameScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+	public CharacterScript character;
+
+	void Awake() {
+		Camera.main.GetComponent<CameraScript> ().game = this;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }
