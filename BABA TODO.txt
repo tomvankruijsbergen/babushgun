@@ -1,0 +1,47 @@
+\\ character //
+- player actions
+	- click on astroid = loslaten
+	- click floating = pfft?
+	- stock aimen
+
+\\ comet //
+- transform
+- rotatie
+- vasthouden -> snap
+- los laten -> snelheid/ richting op bais van je positie
+
+\\ ice comet //
+- zelfde regels als comet
+- beperkte vasthoudtijd -> daarna dood
+
+\\ falling star //
+- zelfde gedrag als comet
+- touch is death
+
+\\ black hole //
+- vaste locatie, geen transform
+- touch is death
+
+\\ Gameflow //
+- Startscherm
+	- touch to start
+- game
+	- player controls
+- eindscherm
+	- game over -> dood 
+	- game won -> doel gehaald
+
+\\ UI //
+- startscherm
+- eindscherm
+- objective marker
+- tracer guideline? 
+
+
+TODO Djangi
+- uploaden benodigheden
+- Unity branch
+- uitzoeken Unity 2d
+	- sprites
+	- collision
+- Joints tweaken
