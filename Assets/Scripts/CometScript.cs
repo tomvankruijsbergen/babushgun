@@ -6,16 +6,16 @@ public class CometScript : MonoBehaviour {
 	public float rotationSpeed;
 	public Vector3 velocity;
 
-	private Rigidbody ownRigidbody;
+	private Rigidbody2D ownRigidbody;
 
 	void Start () {
-		ownRigidbody = this.GetComponent<Rigidbody> ();
+		ownRigidbody = this.GetComponent<Rigidbody2D> ();
 	}
 
 	void FixedUpdate() {
 		Vector3 rotation = transform.eulerAngles;
-		rotation.y += rotationSpeed * Time.fixedDeltaTime;
-		ownRigidbody.MoveRotation (Quaternion.Euler (rotation));
+		rotation.z += rotationSpeed * Time.fixedDeltaTime;
+		ownRigidbody.MoveRotation (rotation.z);
 
 		Vector3 position = transform.position;
 		position.x += velocity.x * Time.fixedDeltaTime;

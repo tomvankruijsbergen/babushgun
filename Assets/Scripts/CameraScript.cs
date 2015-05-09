@@ -4,6 +4,8 @@ using System.Collections;
 public class CameraScript : MonoBehaviour {
 
 	public float followPercentage = 0.8f;
+	public float onCometCameraSize = 15;
+	public float onSpaceCameraSize = 20;
 
 	private Camera ownCamera;
 
@@ -36,7 +38,7 @@ public class CameraScript : MonoBehaviour {
 
 		Hashtable h = new Hashtable ();
 		h.Add ("from", ownCamera.orthographicSize);
-		h.Add ("to", 11);
+		h.Add ("to", onSpaceCameraSize);
 		h.Add ("time", 3f);
 		h.Add ("onupdate", "OnTweenUpdateOrthographicSize");
 		h.Add ("easetype", "easeInOutQuad");
@@ -49,7 +51,7 @@ public class CameraScript : MonoBehaviour {
 
 		Hashtable h = new Hashtable ();
 		h.Add ("from", ownCamera.orthographicSize);
-		h.Add ("to", 8);
+		h.Add ("to", onCometCameraSize);
 		h.Add ("time", 1.5f);
 		h.Add ("easetype", "easeOutCubic");
 		h.Add ("onupdate", "OnTweenUpdateOrthographicSize");

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CometSpawnScript : MonoBehaviour {
 
-	public Transform cometPrefab;
+	public Transform[] cometPrefabs;
 
 	public float cometOriginAngleRangeSize = 120f;
 
@@ -14,7 +14,7 @@ public class CometSpawnScript : MonoBehaviour {
 	}
 
 	void OnWentIntoSpace(CharacterScript c) {
-		if (cometPrefab == null) {
+		if (cometPrefabs.Length == 0) {
 			return;
 		}
 		
@@ -46,8 +46,8 @@ public class CometSpawnScript : MonoBehaviour {
 		}
 
 		// Decide what the comet's velocity and rotation speed will be.
-		float speed = Random.value * 6 + 4;
-		Vector3 cometVelocity = new Vector3 (Mathf.Cos(direction) * speed, 0, Mathf.Sin(direction) * speed);
+		float speed = Random.value * 36 + 24;
+		Vector3 cometVelocity = new Vector3 (Mathf.Cos(direction) * speed, Mathf.Sin(direction) * speed, 0);
 
 		// Use this to offset the comet so that it will hit that set target after the time.
 		targetPosition.x -= cometVelocity.x * timeUntilNextComet;
@@ -55,7 +55,8 @@ public class CometSpawnScript : MonoBehaviour {
 		targetPosition.z -= cometVelocity.z * timeUntilNextComet;
 
 		// Now instantiate the final comet with the final values.
-		Transform t = Instantiate (cometPrefab, targetPosition, Quaternion.identity) as Transform;
+		Transform cc = cometPrefabs[(int)Mathf.Floor(Random.value * cometPrefabs.Length)];
+		Transform t = Instantiate (cc, targetPosition, Quaternion.identity) as Transform;
 
 		float cometRotationSpeed = Random.value * 40 + 120;
 		if (Random.value <= 0.5) cometRotationSpeed *= -1;
