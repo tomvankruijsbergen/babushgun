@@ -14,6 +14,6 @@ public class CameraScript : MonoBehaviour {
 			return;
 
 		transform.position = followedCharacter.transform.position;
-		transform.Translate(new Vector3(0, 0, -50), Space.Self);
+		transform.Translate(new Vector3(0, 0, -10), Space.Self);
 	}
 }
