@@ -22,9 +22,12 @@ public class CharacterScript : MonoBehaviour {
 		return ownRigidbody.velocity;
 	}
 
-	// event going into space
+	// events for going into space and landing 
 	public delegate void _OnWentIntoSpace(CharacterScript c);
-	[HideInInspector] public event _OnWentIntoSpace OnWentIntoSpace;
+	public event _OnWentIntoSpace OnWentIntoSpace;
+
+	public delegate void _OnLandedOntoComet(CharacterScript c);
+	public event _OnLandedOntoComet OnLandedOntoComet;
 
 	void Awake () {
 		timeInSpace = 0;
@@ -67,5 +70,7 @@ public class CharacterScript : MonoBehaviour {
 		cometJoint.connectedAnchor = c.gameObject.transform.InverseTransformPoint (hitPoint);
 		cometJoint.minDistance = 0.5f;
 		cometJoint.maxDistance = 0.6f;
+
+		if (OnLandedOntoComet != null) OnLandedOntoComet(this);
 	}
 }
