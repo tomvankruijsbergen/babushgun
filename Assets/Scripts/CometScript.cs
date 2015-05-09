@@ -21,7 +21,6 @@ public class CometScript : MonoBehaviour {
 		position.x += velocity.x * Time.fixedDeltaTime;
 		position.y += velocity.y * Time.fixedDeltaTime;
 		position.z += velocity.z * Time.fixedDeltaTime;
-		//ownRigidbody.MovePosition (position);
 		transform.position = position;
 	}
 }

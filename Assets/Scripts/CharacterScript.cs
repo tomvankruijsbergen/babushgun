@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
 public class CharacterScript : MonoBehaviour {
 
 	public Vector3 initialForce;
@@ -12,19 +14,36 @@ public class CharacterScript : MonoBehaviour {
 	private Rigidbody ownRigidbody;
 	private SpringJoint cometJoint;
 
-	public bool isFloating { get; private set; }
+	public float timeInSpace { get; private set; }
+	public bool isInSpace() {
+		return cometJoint == null;
+	}
+	public Vector3 velocity() {
+		return ownRigidbody.velocity;
+	}
 
-	void Start () {
+	// event going into space
+	public delegate void _OnWentIntoSpace(CharacterScript c);
+	[HideInInspector] public event _OnWentIntoSpace OnWentIntoSpace;
+
+	void Awake () {
+		timeInSpace = 0;
+
 		ownRigidbody = this.GetComponent<Rigidbody> ();
 		ownRigidbody.AddForce (initialForce, ForceMode.VelocityChange);
 	}
 
 	void Update() {
-		if (Input.anyKey) {
-			if (cometJoint != null) {
-				Destroy(cometJoint);
+		if (cometJoint == null) {
+			timeInSpace += Time.deltaTime;
+		} else {
+			if (Input.anyKeyDown) {
+				cometJoint.connectedBody.detectCollisions = false;
+				Destroy (cometJoint);
 				this.ownRigidbody.drag = 0;
-				print (ownRigidbody.velocity);
+				timeInSpace = 0;
+
+				if (OnWentIntoSpace != null) OnWentIntoSpace(this);
 			}
 		}
 	}
@@ -33,6 +52,7 @@ public class CharacterScript : MonoBehaviour {
 		if (cometJoint != null) {
 			return;
 		}
+
 		Vector3 hitPoint = c.contacts[0].point;
 
 		this.ownRigidbody.drag = dragOnComets;

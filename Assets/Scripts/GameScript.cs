@@ -3,13 +3,17 @@ using System.Collections;
 
 public class GameScript : MonoBehaviour {
 
+	[HideInInspector] public static GameScript game  { get; private set; }
+
 	public CharacterScript character;
 
 	void Awake() {
-		// set the camera's reference to this object manually, because we can access the camera through Camera.main;
-		Camera.main.GetComponent<CameraScript> ().game = this;
+		GameScript.game = this;
 	}
 
+	void Start() {
+
+	}
 
 
 }
