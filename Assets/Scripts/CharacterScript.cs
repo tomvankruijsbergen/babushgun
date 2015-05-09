@@ -12,6 +12,8 @@ public class CharacterScript : MonoBehaviour {
 	private Rigidbody ownRigidbody;
 	private SpringJoint cometJoint;
 
+	public bool isFloating { get; private set; }
+
 	void Start () {
 		ownRigidbody = this.GetComponent<Rigidbody> ();
 		ownRigidbody.AddForce (initialForce, ForceMode.VelocityChange);
@@ -45,7 +47,5 @@ public class CharacterScript : MonoBehaviour {
 		cometJoint.connectedAnchor = c.gameObject.transform.InverseTransformPoint (hitPoint);
 		cometJoint.minDistance = 0.5f;
 		cometJoint.maxDistance = 0.6f;
-
-
 	}
 }
