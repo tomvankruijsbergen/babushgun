@@ -7,6 +7,8 @@ public class GameScript : MonoBehaviour {
 
 	public CharacterScript character;
 
+	public float levelRadius;
+
 	void Awake() {
 		GameScript.game = this;
 	}
