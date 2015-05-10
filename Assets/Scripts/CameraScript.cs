@@ -15,11 +15,19 @@ public class CameraScript : MonoBehaviour {
 		ownCamera = this.GetComponent<Camera> ();
 		GameScript.game.character.OnWentIntoSpace += OnWentIntoSpace;
 		GameScript.game.character.OnLandedOntoComet += OnLandedOntoComet;
+		GameScript.game.OnReset += OnReset;
 	}
 
 	void OnDestroy() {
 		GameScript.game.character.OnWentIntoSpace -= OnWentIntoSpace;
 		GameScript.game.character.OnLandedOntoComet -= OnLandedOntoComet;
+		GameScript.game.OnReset -= OnReset;
+	}
+
+	void OnReset() {
+		iTween.StopByName (TWEENNAME);
+		transform.position = new Vector3 ();
+		ownCamera.orthographicSize = onCometCameraSize;
 	}
 
 	void Update() {

@@ -30,7 +30,6 @@ public class CollectibleSpawnScript : MonoBehaviour {
 		float distance = spawnDeadZone * radius + Random.value * (1 - spawnDeadZone) * radius;
 
 		Vector3 position = new Vector3 (Mathf.Cos (angle) * distance, Mathf.Sin (angle) * distance, 0);
-		//print (position);
 		Instantiate (collectible, position, Quaternion.identity);
 
 	}

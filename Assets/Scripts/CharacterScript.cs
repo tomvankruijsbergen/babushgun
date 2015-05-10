@@ -59,15 +59,11 @@ public class CharacterScript : MonoBehaviour {
 	public event _OnCharacterDeath OnCharacterDeath;
 
 	void Awake () {
-		timeInSpace = 0;
-		frozenFactor = 0;
-		score = 0;
-
 		ownRigidbody = this.GetComponent<Rigidbody2D> ();
-		ownRigidbody.AddForce (initialForce, ForceMode2D.Impulse);
 
 		OnFrozenFactorChanged += InternalOnFrozenFactorChanged;
 		OnCharacterScoreChanged += InternalOnCharacterScoreChanged;
+		GameScript.game.OnReset += OnReset;
 	}
 
 	void OnDestroy() {
@@ -75,7 +71,29 @@ public class CharacterScript : MonoBehaviour {
 		OnCharacterScoreChanged -= InternalOnCharacterScoreChanged;
 	}
 
+	void OnReset() {
+		transform.position = new Vector3 ();
+		ownRigidbody.velocity = new Vector2 ();
+		ownRigidbody.angularVelocity = 0;
+		ownRigidbody.drag = 0;
+		timeInSpace = 0;
+		frozenFactor = 0;
+		score = 0;
+
+		int layer = LayerMask.NameToLayer ("Default");
+		gameObject.layer = layer;
+
+		if (OnCharacterScoreChanged != null) OnCharacterScoreChanged (this);
+		if (OnFrozenFactorChanged != null) OnFrozenFactorChanged (this);
+
+		ownRigidbody.AddForce (initialForce, ForceMode2D.Impulse);
+		ownRigidbody.AddTorque (10, ForceMode2D.Impulse);
+	}
+
 	void Update() {
+		if (frozenFactor >= 1)
+			return;
+
 		if (this.isInSpace() == true) {
 			timeInSpace += Time.deltaTime;
 
@@ -113,6 +131,11 @@ public class CharacterScript : MonoBehaviour {
 
 			if (frozenFactor >= 1) {
 				LaunchIntoSpace();
+
+				int layer = LayerMask.NameToLayer ("Dead");
+				gameObject.layer = layer;
+				this.ownRigidbody.drag = 0.3f;
+
 				if (OnCharacterDeath != null) OnCharacterDeath(this);
 			}
 
