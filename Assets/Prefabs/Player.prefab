@@ -309,8 +309,12 @@ MonoBehaviour:
   cometReleaseCooldown: .75
   dragOnComets: .5
   distanceFromComet: 5
-  unfreezeSpeed: .150000006
-  velocityNeededForUnfreeze: 75
+  unfreezeSpeed: .100000001
+  velocityNeededForUnfreeze: 9001
+  velocityThresholds:
+  - 0
+  velocityScores:
+  - 0
 --- !u!212 &21220918
 SpriteRenderer:
   m_ObjectHideFlags: 1

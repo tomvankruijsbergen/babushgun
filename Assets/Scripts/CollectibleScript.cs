@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CollectibleScript : MonoBehaviour {
 
-	public float scoreAwarded;
+	public float pointsAwarded;
 
 	public void Start() {
 		GameScript.game.character.OnCharacterPickupCollectible += OnCharacterPickupCollectible;
