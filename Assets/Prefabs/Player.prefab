@@ -12,7 +12,7 @@ GameObject:
   - 60: {fileID: 6065320}
   - 50: {fileID: 5064252}
   - 233: {fileID: 23379712}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: player_leg_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ GameObject:
   - 60: {fileID: 6042134}
   - 50: {fileID: 5007752}
   - 233: {fileID: 23318294}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: player_leg_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ GameObject:
   - 60: {fileID: 6016070}
   - 50: {fileID: 5019048}
   - 233: {fileID: 23313844}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: player_arm_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - 60: {fileID: 6086596}
   - 50: {fileID: 5011578}
   - 233: {fileID: 23383812}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: player_arm_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -921,6 +921,14 @@ MonoBehaviour:
   distanceFromComet: 5
   unfreezeSpeed: .150000006
   velocityNeededForUnfreeze: 75
+  velocityThresholds:
+  - 0
+  - 80
+  - 120
+  velocityScores:
+  - 1
+  - 5
+  - 20
 --- !u!212 &21202322
 SpriteRenderer:
   m_ObjectHideFlags: 1
