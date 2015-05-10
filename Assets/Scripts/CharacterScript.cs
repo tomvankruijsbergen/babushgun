@@ -37,6 +37,9 @@ public class CharacterScript : MonoBehaviour {
 	public float unfreezeSpeed;
 	public float velocityNeededForUnfreeze;
 
+	public float[] velocityThresholds;
+	public float[] velocityScores;
+
 	public float timeOnComet { get; private set; }
 	private bool scoredOnCurrentComet;
 
@@ -77,11 +80,24 @@ public class CharacterScript : MonoBehaviour {
 			timeInSpace += Time.deltaTime;
 
 			float speed = this.velocity().magnitude;
+
 			if (speed >= velocityNeededForUnfreeze) {
 				frozenFactor -= unfreezeSpeed * Time.deltaTime;
 				if (frozenFactor < 0) frozenFactor = 0;
 				if (OnFrozenFactorChanged != null) OnFrozenFactorChanged(this);
 			}
+
+			// score for velocity
+			int velocityIndex = 0;
+			for (int i = this.velocityThresholds.Length - 1; i > 0; i--) {
+				float velocity = this.velocityThresholds[i];
+				if (speed > velocity) {
+					velocityIndex = i;
+					break;
+				}
+			}
+			score += this.velocityScores[velocityIndex] * Time.deltaTime;
+			if (OnCharacterScoreChanged != null) OnCharacterScoreChanged(this);
 
 		} else {
 			this.timeOnComet += Time.deltaTime;
@@ -107,20 +123,30 @@ public class CharacterScript : MonoBehaviour {
 	}
 
 	void LaunchIntoSpace() {
-		cometJoint.connectedBody.GetComponent<Collider2D>().enabled = false;
 		Destroy (cometJoint);
+
+		int layer = LayerMask.NameToLayer ("Default");
+		gameObject.layer = layer;
+		this.attachedComet.gameObject.layer = layer;
+
+		this.attachedComet.disableCollisionBriefly ();
 		this.attachedComet = null;
 		this.ownRigidbody.drag = 0;
 		timeInSpace = 0;
-		
+
 		if (OnWentIntoSpace != null) OnWentIntoSpace(this);
 	}
 
 	void OnTriggerEnter2D(Collider2D c) {
 		CollectibleScript collectible = c.gameObject.GetComponent<CollectibleScript>();
-		score += collectible.scoreAwarded;
 		collectible.GetComponent<Collider2D>().enabled = false;
-		if (OnCharacterScoreChanged != null) OnCharacterScoreChanged(this);
+
+		//score += collectible.pointsAwarded;
+		//if (OnCharacterScoreChanged != null) OnCharacterScoreChanged(this);
+
+		frozenFactor -= collectible.pointsAwarded;
+		if (frozenFactor < 0) frozenFactor = 0;
+		if (OnFrozenFactorChanged != null) OnFrozenFactorChanged (this);
 
 		if (OnCharacterPickupCollectible != null) OnCharacterPickupCollectible (this, collectible);
 	}
@@ -146,6 +172,10 @@ public class CharacterScript : MonoBehaviour {
 		this.timeOnComet = 0;
 		this.scoredOnCurrentComet = false;
 		this.attachedComet = cometJoint.connectedBody.GetComponent<CometScript> ();
+
+		int layer = LayerMask.NameToLayer ("LinkedCharacter");
+		gameObject.layer = layer;
+		this.attachedComet.gameObject.layer = layer;
 
 		this.canReleaseFromComet = false;
 		Hashtable h = new Hashtable ();
