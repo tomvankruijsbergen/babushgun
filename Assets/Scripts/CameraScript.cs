@@ -17,6 +17,11 @@ public class CameraScript : MonoBehaviour {
 		GameScript.game.character.OnLandedOntoComet += OnLandedOntoComet;
 	}
 
+	void OnDestroy() {
+		GameScript.game.character.OnWentIntoSpace -= OnWentIntoSpace;
+		GameScript.game.character.OnLandedOntoComet -= OnLandedOntoComet;
+	}
+
 	void FixedUpdate() {
 		if (GameScript.game.character == null)
 			return;

@@ -303,12 +303,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4028446e329694ff1a610eef1161fda9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialForce: {x: 24, y: 0}
-  springForce: 10
+  initialForce: {x: 40, y: 0}
+  springForce: 20
   damper: .800000012
-  dragOnComets: .5
   cometReleaseCooldown: .75
+  dragOnComets: .5
   distanceFromComet: 5
+  unfreezeSpeed: .150000006
+  velocityNeededForUnfreeze: 80
 --- !u!212 &21220918
 SpriteRenderer:
   m_ObjectHideFlags: 1

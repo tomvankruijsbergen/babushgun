@@ -1648,12 +1648,8 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11446394, guid: f00d25e5d5b8a3046a8593cbd31308db, type: 2}
-      propertyPath: initialForce.x
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 11446394, guid: f00d25e5d5b8a3046a8593cbd31308db, type: 2}
-      propertyPath: springForce
-      value: 20
+      propertyPath: velocityNeededForUnfreeze
+      value: 75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f00d25e5d5b8a3046a8593cbd31308db, type: 2}

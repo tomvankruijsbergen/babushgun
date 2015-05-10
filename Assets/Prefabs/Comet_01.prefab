@@ -72,6 +72,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: -100
   velocity: {x: 0, y: 0, z: 0}
+  freezingFactor: .100000001
+  timeRequiredForPoint: 2
 --- !u!212 &21295986
 SpriteRenderer:
   m_ObjectHideFlags: 1

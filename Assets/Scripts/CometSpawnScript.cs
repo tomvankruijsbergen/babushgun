@@ -10,7 +10,10 @@ public class CometSpawnScript : MonoBehaviour {
 	void Start () {
 		cometOriginAngleRangeSize *= Mathf.Deg2Rad;
 		GameScript.game.character.OnWentIntoSpace += OnWentIntoSpace;
-		//OnWentIntoSpace (GameScript.game.character); //this is fired manually because there is no way this object can receive events from CharacterScript during start.
+	}
+
+	void OnDestroy() {
+		GameScript.game.character.OnWentIntoSpace -= OnWentIntoSpace;
 	}
 
 	void OnWentIntoSpace(CharacterScript c) {
@@ -36,7 +39,7 @@ public class CometSpawnScript : MonoBehaviour {
 		 * far away from the center of the level. */
 		float direction = Random.value;
 
-		// Adjust direction for level size.
+		// Adjust direction if the character is on the edges of a level. In that case, comets should lead into the level.
 		float levelRadius = GameScript.game.levelRadius;
 		float angle = Mathf.Atan2 (targetPosition.z, targetPosition.x);
 		float distance = targetPosition.magnitude;
