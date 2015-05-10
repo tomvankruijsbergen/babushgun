@@ -488,10 +488,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialForce: {x: 40, y: 0}
-  springForce: 20
+  springForce: 10
   damper: .800000012
   cometReleaseCooldown: .75
-  dragOnComets: .5
+  dragOnComets: 1
   distanceFromComet: 5
   unfreezeSpeed: .150000006
   velocityNeededForUnfreeze: 75
