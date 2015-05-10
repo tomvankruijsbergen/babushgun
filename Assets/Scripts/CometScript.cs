@@ -8,6 +8,7 @@ public class CometScript : MonoBehaviour {
 
 	public float freezingFactor;
 	public float timeRequiredForPoint;
+	public int scoreAwarded;
 
 	private Rigidbody2D ownRigidbody;
 

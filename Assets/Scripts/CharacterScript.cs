@@ -49,6 +49,9 @@ public class CharacterScript : MonoBehaviour {
 	public delegate void _OnCharacterScoreChanged(CharacterScript c);
 	public event _OnCharacterScoreChanged OnCharacterScoreChanged;
 
+	public delegate void _OnCharacterPickupCollectible(CharacterScript character, CollectibleScript collectible);
+	public event _OnCharacterPickupCollectible OnCharacterPickupCollectible;
+
 	public delegate void _OnCharacterDeath(CharacterScript c);
 	public event _OnCharacterDeath OnCharacterDeath;
 
@@ -84,7 +87,7 @@ public class CharacterScript : MonoBehaviour {
 			this.timeOnComet += Time.deltaTime;
 
 			if (this.scoredOnCurrentComet == false && this.timeOnComet >= attachedComet.timeRequiredForPoint) {
-				score++;
+				score += attachedComet.scoreAwarded;
 				this.scoredOnCurrentComet = true;
 				if (OnCharacterScoreChanged != null) OnCharacterScoreChanged(this);
 			}
@@ -111,6 +114,15 @@ public class CharacterScript : MonoBehaviour {
 		timeInSpace = 0;
 		
 		if (OnWentIntoSpace != null) OnWentIntoSpace(this);
+	}
+
+	void OnTriggerEnter2D(Collider2D c) {
+		CollectibleScript collectible = c.gameObject.GetComponent<CollectibleScript>();
+		score += collectible.scoreAwarded;
+		collectible.GetComponent<Collider2D>().enabled = false;
+		if (OnCharacterScoreChanged != null) OnCharacterScoreChanged(this);
+
+		if (OnCharacterPickupCollectible != null) OnCharacterPickupCollectible (this, collectible);
 	}
 
 	void OnCollisionEnter2D(Collision2D c) {

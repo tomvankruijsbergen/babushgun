@@ -28,7 +28,7 @@ public class GameScript : MonoBehaviour {
 		frostText.text = "" + frozenAmount;
 	}
 	void OnCharacterScoreChanged(CharacterScript c) {
-		scoreText.text = "" + c.score;
+		scoreText.text = "" + Mathf.Floor(c.score);
 	}
 
 

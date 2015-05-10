@@ -867,6 +867,7 @@ GameObject:
   - 4: {fileID: 719549366}
   - 114: {fileID: 719549365}
   - 114: {fileID: 719549367}
+  - 114: {fileID: 719549368}
   m_Layer: 0
   m_Name: zzController
   m_TagString: Untagged
@@ -918,6 +919,20 @@ MonoBehaviour:
   - {fileID: 459592, guid: 9e3b67b2cfed0d643b222e6ffce89120, type: 2}
   - {fileID: 464618, guid: 670c81dce2e90b048919072339dbb2a4, type: 2}
   cometOriginAngleRangeSize: 120
+--- !u!114 &719549368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 719549364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b30628b7df308479ea0bbf481e1ba1a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectible: {fileID: 433830, guid: ec03c68dff0b0e84e8b8247979c7d915, type: 2}
+  concurrentCollectibles: 4
+  spawnDeadZone: .330000013
 --- !u!1 &1065441704
 GameObject:
   m_ObjectHideFlags: 0
@@ -1624,10 +1639,6 @@ Prefab:
     - target: {fileID: 402068, guid: f00d25e5d5b8a3046a8593cbd31308db, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11446394, guid: f00d25e5d5b8a3046a8593cbd31308db, type: 2}
-      propertyPath: velocityNeededForUnfreeze
-      value: 75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f00d25e5d5b8a3046a8593cbd31308db, type: 2}

@@ -310,7 +310,7 @@ MonoBehaviour:
   dragOnComets: .5
   distanceFromComet: 5
   unfreezeSpeed: .150000006
-  velocityNeededForUnfreeze: 80
+  velocityNeededForUnfreeze: 75
 --- !u!212 &21220918
 SpriteRenderer:
   m_ObjectHideFlags: 1
