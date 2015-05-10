@@ -14,7 +14,11 @@ public class CometSpawnScript : MonoBehaviour {
 	void Start () {
 		cometOriginAngleRangeSize *= Mathf.Deg2Rad;
 		GameScript.game.character.OnWentIntoSpace += OnWentIntoSpace;
+		GameScript.game.OnReset += OnReset;
+	}
 
+	void OnReset() {
+		CancelInvoke ();
 		SpawnRandomComet ();
 	}
 
