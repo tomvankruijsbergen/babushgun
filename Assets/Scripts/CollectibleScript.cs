@@ -4,9 +4,18 @@ using System.Collections;
 public class CollectibleScript : MonoBehaviour {
 
 	public float pointsAwarded;
+	public float rotationSpeed;
 
 	public void Start() {
 		GameScript.game.character.OnCharacterPickupCollectible += OnCharacterPickupCollectible;
+		transform.Rotate (new Vector3 (0, 0, Random.value * 360));
+
+		if (Random.value <= 0.5)
+			rotationSpeed = -rotationSpeed;
+	}
+
+	public void Update() {
+		transform.Rotate (new Vector3 (0, 0, rotationSpeed * Time.deltaTime));
 	}
 
 	public void OnDestroy() {

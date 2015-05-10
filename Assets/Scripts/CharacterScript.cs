@@ -65,6 +65,7 @@ public class CharacterScript : MonoBehaviour {
 
 		ownRigidbody = this.GetComponent<Rigidbody2D> ();
 		ownRigidbody.AddForce (initialForce, ForceMode2D.Impulse);
+		ownRigidbody.AddTorque (10, ForceMode2D.Impulse);
 
 		OnFrozenFactorChanged += InternalOnFrozenFactorChanged;
 		OnCharacterScoreChanged += InternalOnCharacterScoreChanged;
