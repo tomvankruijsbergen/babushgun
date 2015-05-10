@@ -70,11 +70,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc777ff5d87094d64b2a3f6577a97631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: -100
+  rotationSpeed: -150
   velocity: {x: 0, y: 0, z: 0}
   freezingFactor: .0199999996
   timeRequiredForPoint: 2
   scoreAwarded: 0
+  isTargetedAtPlayer: 0
 --- !u!212 &21295986
 SpriteRenderer:
   m_ObjectHideFlags: 1
