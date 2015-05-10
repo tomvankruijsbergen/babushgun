@@ -6,6 +6,9 @@ public class CometScript : MonoBehaviour {
 	public float rotationSpeed;
 	public Vector3 velocity;
 
+	public float freezingFactor;
+	public float timeRequiredForPoint;
+
 	private Rigidbody2D ownRigidbody;
 
 	void Start () {
