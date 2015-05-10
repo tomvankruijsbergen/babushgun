@@ -165,7 +165,7 @@ public class CharacterScript : MonoBehaviour {
 	void InternalOnCharacterScoreChanged (CharacterScript c) {
 		if (c != this)
 			return;
-		print (score);
+		//print (score);
 	}
 
 }
