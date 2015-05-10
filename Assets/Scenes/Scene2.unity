@@ -238,7 +238,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 8999
   m_Sprite: {fileID: 21300000, guid: 27a9f6998d234244d8e13c791ac1123f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &281738746
@@ -331,7 +331,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9001
   m_Sprite: {fileID: 21300000, guid: ccf9d875bb59eda4ba1578fe2d3ad349, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &350986388
@@ -668,7 +668,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9001
   m_Sprite: {fileID: 21300000, guid: c8e7a784437fa384d964f7c84c76cdfe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &722353291
@@ -761,7 +761,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 8999
   m_Sprite: {fileID: 21300000, guid: c967ac50b6b15324891a04c2d5ee50e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1003729230
@@ -848,7 +848,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 9000
   m_Sprite: {fileID: 21300000, guid: b6653cd3bf3ae644d9234f6b9e3056a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1642283197
@@ -920,7 +920,7 @@ GameObject:
   - 212: {fileID: 1960050082}
   - 114: {fileID: 1960050084}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: BackgroundSpiral
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -975,7 +975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d91c205d0c3f4a288b9f3359d8922bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxValue: {x: .100000001, y: .100000001}
+  parallaxValue: {x: .200000003, y: .200000003}
 --- !u!1 &2005804480
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,7 +1151,7 @@ MonoBehaviour:
   cometReleaseCooldown: .75
   dragOnComets: .5
   distanceFromComet: 5
-  unfreezeSpeed: .150000006
+  unfreezeSpeed: 0
   velocityNeededForUnfreeze: 75
   velocityThresholds:
   - 0
