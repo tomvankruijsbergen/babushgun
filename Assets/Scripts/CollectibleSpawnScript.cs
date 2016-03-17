@@ -10,7 +10,10 @@ public class CollectibleSpawnScript : MonoBehaviour {
 
 	void Start () {
 		GameScript.game.character.OnCharacterPickupCollectible += OnCharacterPickupCollectible;
+		GameScript.game.OnReset += OnReset;
+	}
 
+	void OnReset() {
 		for (int i = 0; i < concurrentCollectibles; i++) {
 			SpawnCollectible();
 		}

@@ -30,6 +30,8 @@ public class GameScript : MonoBehaviour {
 		this.character.OnCharacterDeath += OnCharacterDeath;
 
 		this.OnReset += InternalOnReset;
+
+		titleCanvasGroup.alpha = 0;
 	}
 
 	void Start() {

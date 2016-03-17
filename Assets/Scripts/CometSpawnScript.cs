@@ -31,7 +31,7 @@ public class CometSpawnScript : MonoBehaviour {
 
 		float startArea = GameScript.game.levelRadius * 3;
 
-		float speed = Random.value * 36 + 36;
+		float speed = Random.value * 36 + 48;
 		float direction = Random.value * Mathf.PI * 2;
 		Vector3 cometVelocity = new Vector3 (Mathf.Cos(direction) * speed, Mathf.Sin(direction) * speed, 0);
 
@@ -44,7 +44,7 @@ public class CometSpawnScript : MonoBehaviour {
 		position.x += Mathf.Cos (angleNormal) * (Random.value * 2 * offset - offset);
 		position.y += Mathf.Sin (angleNormal) * (Random.value * 2 * offset - offset);
 
-		float cometRotationSpeed = Random.value * 40 + 120;
+		float cometRotationSpeed = Random.value * 20 + 190;
 		if (Random.value <= 0.5) cometRotationSpeed *= -1;
 
 		SpawnComet (cometModel, position, cometVelocity, cometRotationSpeed, true);
@@ -86,7 +86,7 @@ public class CometSpawnScript : MonoBehaviour {
 		}
 
 		// Decide what the comet's velocity and rotation speed will be.
-		float speed = Random.value * 36 + 36;
+		float speed = Random.value * 36 + 48;
 		Vector3 cometVelocity = new Vector3 (Mathf.Cos(direction) * speed, Mathf.Sin(direction) * speed, 0);
 
 		// Use this to offset the comet so that it will hit that set target after the time.
@@ -94,7 +94,7 @@ public class CometSpawnScript : MonoBehaviour {
 		targetPosition.y -= cometVelocity.y * timeUntilNextComet;
 		targetPosition.z -= cometVelocity.z * timeUntilNextComet;
 
-		float cometRotationSpeed = Random.value * 40 + 120;
+		float cometRotationSpeed = Random.value * 20 + 190;
 		if (Random.value <= 0.5) cometRotationSpeed *= -1;
 
 		// Now instantiate the final comet with the final values.
